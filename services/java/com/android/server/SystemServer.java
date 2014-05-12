@@ -47,8 +47,14 @@ import android.os.ServiceManager;
 import android.os.StrictMode;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+// Engle, for 4.1 bluetooth, start
+import android.server.BluetoothA2dpService;
+import android.server.BluetoothService;
+// Engle, for 4.1 bluetooth, end
 import android.os.UserHandle;
+// Engle, for 4.1 bluetooth, start
 import android.provider.Settings;
+// Engle, for 4.1 bluetooth, end
 import android.service.dreams.DreamService;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -203,7 +209,12 @@ class ServerThread {
         IPackageManager pm = null;
         Context context = null;
         WindowManagerService wm = null;
-        BluetoothManagerService bluetooth = null;
+        // Engle, for 4.1 bluetooth, start
+        BluetoothService bluetooth = null;
+        BluetoothA2dpService bluetoothA2dp = null;
+        //BluetoothManagerService bluetooth = null;
+        // Engle, for 4.1 bluetooth, end
+
         DockObserver dock = null;
         RotationSwitchObserver rotateSwitch = null;
         UsbService usb = null;
@@ -402,9 +413,28 @@ class ServerThread {
             } else if (disableBluetooth) {
                 Slog.i(TAG, "Bluetooth Service disabled by config");
             } else {
-                Slog.i(TAG, "Bluetooth Manager Service");
-                bluetooth = new BluetoothManagerService(context);
-                ServiceManager.addService(BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE, bluetooth);
+                // Engle, for 4.1 bluetooth, start
+                //Slog.i(TAG, "Bluetooth Manager Service");
+                //bluetooth = new BluetoothManagerService(context);
+                //ServiceManager.addService(BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE, bluetooth);
+                Slog.i(TAG, "Bluetooth Service");
+                bluetooth = new BluetoothService(context);
+                ServiceManager.addService(BluetoothAdapter.BLUETOOTH_SERVICE, bluetooth);
+                bluetooth.initAfterRegistration();
+
+                if (!"0".equals(SystemProperties.get("system_init.startaudioservice"))) {
+                    bluetoothA2dp = new BluetoothA2dpService(context, bluetooth);
+                    ServiceManager.addService(BluetoothA2dpService.BLUETOOTH_A2DP_SERVICE,
+                                              bluetoothA2dp);
+                    bluetooth.initAfterA2dpRegistration();
+                }
+
+                int bluetoothOn = Settings.Global.getInt(mContentResolver,
+                    Settings.Global.BLUETOOTH_ON, 0);
+                if (bluetoothOn != 0) {
+                    bluetooth.enable();
+                }
+                // Engle, for 4.1 bluetooth, end
             }
         } catch (RuntimeException e) {
             Slog.e("System", "******************************************");

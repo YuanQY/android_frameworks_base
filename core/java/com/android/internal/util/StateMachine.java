@@ -420,11 +420,12 @@ public class StateMachine {
     // Name of the state machine and used as logging tag
     private String mName;
 
+    // Engle, add for bluez
     /** Message.what value when quitting */
-    private static final int SM_QUIT_CMD = -1;
+    public static final int SM_QUIT_CMD = -1;
 
     /** Message.what value when initializing */
-    private static final int SM_INIT_CMD = -2;
+    public static final int SM_INIT_CMD = -2;
 
     /**
      * Convenience constant that maybe returned by processMessage

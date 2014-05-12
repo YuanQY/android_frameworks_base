@@ -67,13 +67,21 @@ public class BluetoothTetheringDataTracker extends BaseNetworkStateTracker {
     private AtomicBoolean mDefaultRouteSet = new AtomicBoolean(false);
 
     private final Object mLinkPropertiesLock = new Object();
+    private LinkProperties mLinkProperties;
+
+    private LinkCapabilities mLinkCapabilities;
+
     private final Object mNetworkInfoLock = new Object();
+    private NetworkInfo mNetworkInfo;
 
     private BluetoothPan mBluetoothPan;
-    private static String mRevTetheredIface;
+    private BluetoothDevice mDevice;
+    private static String mIface;
+
     /* For sending events to connectivity service handler */
     private Handler mCsHandler;
-    private static BluetoothTetheringDataTracker sInstance;
+    protected Context mContext;
+    public static BluetoothTetheringDataTracker sInstance;
     private BtdtHandler mBtdtHandler;
     private AtomicReference<AsyncChannel> mAsyncChannel = new AtomicReference<AsyncChannel>(null);
 

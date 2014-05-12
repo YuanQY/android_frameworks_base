@@ -410,6 +410,7 @@ public final class BluetoothHandsfreeClient implements BluetoothProfile {
         mServiceListener = l;
         mAdapter = BluetoothAdapter.getDefaultAdapter();
 
+        /* Engle, TODO
         IBluetoothManager mgr = mAdapter.getBluetoothManager();
         if (mgr != null) {
             try {
@@ -417,7 +418,7 @@ public final class BluetoothHandsfreeClient implements BluetoothProfile {
             } catch (RemoteException e) {
                 Log.e(TAG,"",e);
             }
-        }
+        }*/
 
         if (!context.bindService(new Intent(IBluetoothHandsfreeClient.class.getName()), mConnection, 0)) {
             Log.e(TAG, "Could not bind to Bluetooth Handsfree Client Service");
@@ -433,6 +434,7 @@ public final class BluetoothHandsfreeClient implements BluetoothProfile {
     /*package*/ void close() {
         if (VDBG) log("close()");
 
+        /* Engle, TODO
         IBluetoothManager mgr = mAdapter.getBluetoothManager();
         if (mgr != null) {
             try {
@@ -441,6 +443,7 @@ public final class BluetoothHandsfreeClient implements BluetoothProfile {
                 Log.e(TAG,"",e);
             }
         }
+        */
 
         synchronized (mConnection) {
             if (mService != null) {

@@ -2093,4 +2093,9 @@
   <public type="bool" name="config_useFixedVolume" id="0x1110056" />
   <public type="array" name="networkAttributes" id="0x107000b" />
 
+  <!-- Engle, add for bluez -->
+  <java-symbol type="array" name="avrcp_meta_changed_intents" />
+  <java-symbol type="array" name="avrcp_playstate_changed_intents" />
+  <java-symbol type="array" name="avrcp_special_extra_keys" />
+  <java-symbol type="array" name="avrcp_overridable_extra_keys" />
 </resources>

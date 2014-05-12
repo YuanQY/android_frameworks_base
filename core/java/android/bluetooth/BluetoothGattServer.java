@@ -20,8 +20,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProfile.ServiceListener;
-import android.bluetooth.IBluetoothManager;
-import android.bluetooth.IBluetoothStateChangeCallback;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -108,7 +106,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                                                       connected ? BluetoothProfile.STATE_CONNECTED :
                                                       BluetoothProfile.STATE_DISCONNECTED);
                 } catch (Exception ex) {
-                    Log.w(TAG, "Unhandled exception in callback", ex);
+                    Log.w(TAG, "Unhandled exception: " + ex);
                 }
             }
 
@@ -128,7 +126,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                 try {
                     mCallback.onServiceAdded((int)status, service);
                 } catch (Exception ex) {
-                    Log.w(TAG, "Unhandled exception in callback", ex);
+                    Log.w(TAG, "Unhandled exception: " + ex);
                 }
             }
 
@@ -154,7 +152,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                 try {
                     mCallback.onCharacteristicReadRequest(device, transId, offset, characteristic);
                 } catch (Exception ex) {
-                    Log.w(TAG, "Unhandled exception in callback", ex);
+                    Log.w(TAG, "Unhandled exception: " + ex);
                 }
             }
 
@@ -186,7 +184,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                 try {
                     mCallback.onDescriptorReadRequest(device, transId, offset, descriptor);
                 } catch (Exception ex) {
-                    Log.w(TAG, "Unhandled exception in callback", ex);
+                    Log.w(TAG, "Unhandled exception: " + ex);
                 }
             }
 
@@ -214,7 +212,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     mCallback.onCharacteristicWriteRequest(device, transId, characteristic,
                                                            isPrep, needRsp, offset, value);
                 } catch (Exception ex) {
-                    Log.w(TAG, "Unhandled exception in callback", ex);
+                    Log.w(TAG, "Unhandled exception: " + ex);
                 }
 
             }
@@ -250,7 +248,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                     mCallback.onDescriptorWriteRequest(device, transId, descriptor,
                                                        isPrep, needRsp, offset, value);
                 } catch (Exception ex) {
-                    Log.w(TAG, "Unhandled exception in callback", ex);
+                    Log.w(TAG, "Unhandled exception: " + ex);
                 }
             }
 
@@ -270,7 +268,7 @@ public final class BluetoothGattServer implements BluetoothProfile {
                 try {
                     mCallback.onExecuteWrite(device, transId, execWrite);
                 } catch (Exception ex) {
-                    Log.w(TAG, "Unhandled exception in callback", ex);
+                    Log.w(TAG, "Unhandled exception: " + ex);
                 }
             }
         };
@@ -498,10 +496,6 @@ public final class BluetoothGattServer implements BluetoothProfile {
 
         BluetoothGattService service = characteristic.getService();
         if (service == null) return false;
-
-        if (characteristic == null || characteristic.getValue() == null) {
-            return false;
-        }
 
         try {
             mService.sendNotification(mServerIf, device.getAddress(),

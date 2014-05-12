@@ -124,7 +124,8 @@ public final class BluetoothManager {
         }
 
         List<BluetoothDevice> connectedDevices = new ArrayList<BluetoothDevice>();
-
+        // Engle, TODO
+        /*
         try {
             IBluetoothManager managerService = mAdapter.getBluetoothManager();
             IBluetoothGatt iGatt = managerService.getBluetoothGatt();
@@ -135,6 +136,7 @@ public final class BluetoothManager {
         } catch (RemoteException e) {
             Log.e(TAG,"",e);
         }
+        */
 
         return connectedDevices;
     }
@@ -170,6 +172,8 @@ public final class BluetoothManager {
 
         List<BluetoothDevice> devices = new ArrayList<BluetoothDevice>();
 
+        // Engle, TODO
+        /*
         try {
             IBluetoothManager managerService = mAdapter.getBluetoothManager();
             IBluetoothGatt iGatt = managerService.getBluetoothGatt();
@@ -178,7 +182,7 @@ public final class BluetoothManager {
         } catch (RemoteException e) {
             Log.e(TAG,"",e);
         }
-
+        */
         return devices;
     }
 
@@ -201,6 +205,8 @@ public final class BluetoothManager {
         // TODO(Bluetooth) check whether platform support BLE
         //     Do the check here or in GattServer?
 
+        // Engle, TODO
+        /*
         try {
             IBluetoothManager managerService = mAdapter.getBluetoothManager();
             IBluetoothGatt iGatt = managerService.getBluetoothGatt();
@@ -215,5 +221,7 @@ public final class BluetoothManager {
             Log.e(TAG,"",e);
             return null;
         }
+        */
+        return null;
     }
 }

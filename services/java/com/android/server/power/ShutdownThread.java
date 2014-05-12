@@ -28,7 +28,8 @@ import android.app.IActivityManager;
 import android.app.KeyguardManager;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.IBluetoothManager;
+// Engle, for bluez
+import android.bluetooth.IBluetooth;
 import android.nfc.NfcAdapter;
 import android.nfc.INfcAdapter;
 import android.content.BroadcastReceiver;
@@ -448,10 +449,15 @@ public final class ShutdownThread extends Thread {
                         INfcAdapter.Stub.asInterface(ServiceManager.checkService("nfc"));
                 final ITelephony phone =
                         ITelephony.Stub.asInterface(ServiceManager.checkService("phone"));
+                // Engle, for bluez
+                final IBluetooth bluetooth =
+                        IBluetooth.Stub.asInterface(ServiceManager.checkService(
+                                BluetoothAdapter.BLUETOOTH_SERVICE));
+                /*
                 final IBluetoothManager bluetooth =
                         IBluetoothManager.Stub.asInterface(ServiceManager.checkService(
                                 BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE));
-
+                */
                 try {
                     nfcOff = nfc == null ||
                              nfc.getState() == NfcAdapter.STATE_OFF;
