@@ -1327,6 +1327,10 @@ public class PackageManagerService extends IPackageManager.Stub {
                 // the boot class path for art, so don't dexopt it to
                 // avoid the resulting log spew.
                 alreadyDexOpted.add(frameworkDir.getPath() + "/core-libart.jar");
+                
+                // Gross hack for now: we know this file doesn't contain any
+                // code, so don't dexopt it to avoid the resulting log spew.
+                alreadyDexOpted.add(frameworkDir.getPath() + "/mediatek-res.apk");
 
                 /**
                  * And there are a number of commands implemented in Java, which
