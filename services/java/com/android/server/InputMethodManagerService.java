@@ -744,7 +744,8 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
         if (defIm == null && mMethodList.size() > 0) {
             defIm = InputMethodUtils.getMostApplicableDefaultIME(
                     mSettings.getEnabledInputMethodListLocked());
-            Slog.i(TAG, "No default found, using " + defIm.getId());
+            if (defIm != null)
+            	Slog.i(TAG, "No default found, using " + defIm.getId());
         }
         if (defIm != null) {
             setSelectedInputMethodAndSubtypeLocked(defIm, NOT_A_SUBTYPE_ID, false);
@@ -3354,7 +3355,7 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                     ? new File(Environment.getDataDirectory(), SYSTEM_PATH)
                     : Environment.getUserSystemDirectory(userId);
             final File inputMethodDir = new File(systemDir, INPUT_METHOD_PATH);
-            if (!inputMethodDir.mkdirs()) {
+            if (!inputMethodDir.exists() && !inputMethodDir.mkdirs()) {
                 Slog.w(TAG, "Couldn't create dir.: " + inputMethodDir.getAbsolutePath());
             }
             final File subtypeFile = new File(inputMethodDir, ADDITIONAL_SUBTYPES_FILE_NAME);
