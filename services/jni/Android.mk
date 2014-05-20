@@ -3,6 +3,7 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= \
     com_android_server_AlarmManagerService.cpp \
+    com_android_server_BatteryService.cpp \
     com_android_server_AssetAtlasService.cpp \
     com_android_server_ConsumerIrService.cpp \
     com_android_server_input_InputApplicationHandle.cpp \
