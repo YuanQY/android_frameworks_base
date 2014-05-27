@@ -2484,10 +2484,6 @@ public class AudioService extends IAudioService.Stub {
                                 }
                                 */
                                 break;
-                            case SCO_STATE_DEACTIVATE_REQ:
-                                 status = mBluetoothHeadset.stopScoUsingVirtualVoiceCall(
-                                                                        mBluetoothHeadsetDevice);
-                                break;
                             case SCO_STATE_DEACTIVATE_EXT_REQ:
                                 status = mBluetoothHeadset.stopVoiceRecognition(
                                         mBluetoothHeadsetDevice);
