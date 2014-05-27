@@ -2460,7 +2460,6 @@ public class AudioService extends IAudioService.Stub {
                             case SCO_STATE_ACTIVATE_REQ:
                                 mScoAudioState = SCO_STATE_ACTIVE_INTERNAL;
                                 status = mBluetoothHeadset.startScoUsingVirtualVoiceCall(
-<<<<<<< HEAD
                                                                         mBluetoothHeadsetDevice);
                                 // Engle, TODO for bluez
                                 /*
