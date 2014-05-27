@@ -2271,6 +2271,7 @@ public class AudioService extends IAudioService.Stub {
                     if (mScoAudioState == SCO_STATE_ACTIVE_INTERNAL) {
                         if (mBluetoothHeadset != null && mBluetoothHeadsetDevice != null) {
                             boolean status;
+
                             status = mBluetoothHeadset.stopScoUsingVirtualVoiceCall(
                                                                     mBluetoothHeadsetDevice);
                             // Engle, TODO for bluez
@@ -2282,6 +2283,7 @@ public class AudioService extends IAudioService.Stub {
                                                                         mBluetoothHeadsetDevice);
                             }
                             */
+
                             if (!status) {
                                 mScoAudioState = SCO_STATE_INACTIVE;
                                 broadcastScoConnectionState(
@@ -2458,6 +2460,7 @@ public class AudioService extends IAudioService.Stub {
                             case SCO_STATE_ACTIVATE_REQ:
                                 mScoAudioState = SCO_STATE_ACTIVE_INTERNAL;
                                 status = mBluetoothHeadset.startScoUsingVirtualVoiceCall(
+<<<<<<< HEAD
                                                                         mBluetoothHeadsetDevice);
                                 // Engle, TODO for bluez
                                 /*
@@ -2481,6 +2484,10 @@ public class AudioService extends IAudioService.Stub {
                                                                         mBluetoothHeadsetDevice);
                                 }
                                 */
+                                break;
+                            case SCO_STATE_DEACTIVATE_REQ:
+                                 status = mBluetoothHeadset.stopScoUsingVirtualVoiceCall(
+                                                                        mBluetoothHeadsetDevice);
                                 break;
                             case SCO_STATE_DEACTIVATE_EXT_REQ:
                                 status = mBluetoothHeadset.stopVoiceRecognition(

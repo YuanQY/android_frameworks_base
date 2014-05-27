@@ -645,7 +645,6 @@ public class BatteryMeterView extends View implements DemoMode {
             mFrontPaint.setDither(true);
             mFrontPaint.setStrokeWidth(0);
             mFrontPaint.setStyle(Paint.Style.STROKE);
-            mFrontPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
 
             mBackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mBackPaint.setColor(res.getColor(R.color.batterymeter_frame_color));
@@ -767,7 +766,8 @@ public class BatteryMeterView extends View implements DemoMode {
          * uses mInvalidate for delayed invalidate() callbacks
          */
         private void updateChargeAnim(BatteryTracker tracker) {
-            if (!tracker.shouldIndicateCharging()) {
+            if (!tracker.shouldIndicateCharging()
+                    || tracker.status == BatteryManager.BATTERY_STATUS_FULL) {
                 if (mIsAnimating) {
                     mIsAnimating = false;
                     mAnimOffset = 0;
