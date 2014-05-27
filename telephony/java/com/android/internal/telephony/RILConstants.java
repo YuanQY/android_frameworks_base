@@ -339,6 +339,8 @@ cat include/telephony/ril.h | \
     int RIL_UNSOL_STK_SEND_SMS_RESULT = 11002; /* Samsung STK */
 
     // Engle, Add for MTK, start
+    int RIL_REQUEST_GET_NITZ_TIME = 146;
+    int RIL_REQUEST_QUERY_UIM_INSERTED = 500;
     int RIL_REQUEST_MTK_BASE = 2000;
     int RIL_REQUEST_HANGUP_ALL = RIL_REQUEST_MTK_BASE + 0;
     int RIL_REQUEST_GET_COLP = RIL_REQUEST_MTK_BASE + 1;
