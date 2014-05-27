@@ -67,6 +67,13 @@ public class SignalStrength implements Parcelable {
 
     private boolean isGsm; // This value is set by the ServiceStateTracker onSignalStrengthResult
 
+    // Engle, add for MTK, start
+    private int mSimId = 1;
+    private int mGsmEcn0Qdbm = 0;
+    private int mGsmRscpQdbm = 0;
+    private int mGsmRssiQdbm = 0;
+    // Engle, add for MTK, end
+
     /**
      * Create a new SignalStrength from a intent notifier Bundle
      *
@@ -270,6 +277,11 @@ public class SignalStrength implements Parcelable {
         mLteCqi = s.mLteCqi;
         mTdScdmaRscp = s.mTdScdmaRscp;
         isGsm = s.isGsm;
+        // Engle, add for MTK, start
+        mGsmRssiQdbm = s.mGsmRssiQdbm;
+        mGsmRscpQdbm = s.mGsmRscpQdbm;
+        mGsmEcn0Qdbm = s.mGsmEcn0Qdbm;
+        // Engle, add for MTK, end
     }
 
     /**
@@ -293,7 +305,14 @@ public class SignalStrength implements Parcelable {
         mLteRssnr = in.readInt();
         mLteCqi = in.readInt();
         mTdScdmaRscp = in.readInt();
-        isGsm = (in.readInt() != 0);
+        // Engle, add for MTK, start
+        // isGsm = (in.readInt() != 0);
+        isGsm = (mTdScdmaRscp == 0 ? false : true);
+        mSimId = in.readInt();
+        mGsmRssiQdbm = in.readInt();
+        mGsmRscpQdbm = in.readInt();
+        mGsmEcn0Qdbm = in.readInt();
+        // Engle, add for MTK, end
     }
 
     /**
