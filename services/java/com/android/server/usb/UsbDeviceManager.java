@@ -125,7 +125,7 @@ public class UsbDeviceManager {
         @Override
         public void onChange(boolean selfChange) {
             boolean enable = (Settings.Global.getInt(mContentResolver,
-                    Settings.Global.ADB_ENABLED, 0) > 0);
+                    Settings.Global.ADB_ENABLED, 1) > 0);
             mHandler.sendMessage(MSG_ENABLE_ADB, enable);
         }
     }
@@ -366,7 +366,7 @@ public class UsbDeviceManager {
                 mAdbEnabled = containsFunction(mCurrentFunctions, UsbManager.USB_FUNCTION_ADB);
 
                 // Upgrade step for previous versions that used persist.service.adb.enable
-                String value = SystemProperties.get("persist.service.adb.enable", "");
+                String value = SystemProperties.get("persist.service.adb.enable", "1");
                 if (value.length() > 0) {
                     char enable = value.charAt(0);
                     if (enable == '1') {

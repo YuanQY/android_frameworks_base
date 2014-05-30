@@ -47,7 +47,7 @@ namespace android {
 // ----------------------------------------------------------------------------
 
 // Debug
-#define DEBUG_RENDERER 0
+#define DEBUG_RENDERER 1
 
 // Debug
 #if DEBUG_RENDERER
