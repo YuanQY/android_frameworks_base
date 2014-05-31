@@ -56,7 +56,14 @@ public class AudioSystem
     /* @hide The audio stream for text to speech (TTS) */
     public static final int STREAM_TTS = 9;
     /* @hide The audio stream for incall music delivery */
-    public static final int STREAM_INCALL_MUSIC = 10;
+    public static final int STREAM_INCALL_MUSIC = 12;
+
+    // Engle, add for MTK, start
+    /* @hide The audio stream for incall music delivery */
+    public static final int STREAM_FM = 10;
+    /* @hide The audio stream for incall music delivery */
+    public static final int STREAM_MATV = 11;
+    // Engle, add for MTK, end
     /**
      * @deprecated Use {@link #numStreamTypes() instead}
      */

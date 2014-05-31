@@ -216,7 +216,10 @@ public class AudioService extends IAudioService.Stub {
         15, // STREAM_BLUETOOTH_SCO
         7,  // STREAM_SYSTEM_ENFORCED
         15, // STREAM_DTMF
-        15  // STREAM_TTS
+        15, // STREAM_TTS
+        
+        13, // STREAM_FM
+        13  // STREAM_MATV
     };
     /* mStreamVolumeAlias[] indicates for each stream if it uses the volume settings
      * of another stream: This avoids multiplying the volume settings for hidden
@@ -236,7 +239,11 @@ public class AudioService extends IAudioService.Stub {
         AudioSystem.STREAM_BLUETOOTH_SCO,   // STREAM_BLUETOOTH_SCO
         AudioSystem.STREAM_RING,            // STREAM_SYSTEM_ENFORCED
         AudioSystem.STREAM_RING,            // STREAM_DTMF
-        AudioSystem.STREAM_MUSIC            // STREAM_TTS
+        AudioSystem.STREAM_MUSIC,           // STREAM_TTS
+        // Engle, add for MTK, start
+        AudioSystem.STREAM_FM,              // STREAM_FM
+        AudioSystem.STREAM_MATV             // STREAM_MATV
+        // Engle, add for MTK, end
     };
     private final int[] STREAM_VOLUME_ALIAS_NON_VOICE = new int[] {
         AudioSystem.STREAM_VOICE_CALL,      // STREAM_VOICE_CALL
@@ -248,7 +255,11 @@ public class AudioService extends IAudioService.Stub {
         AudioSystem.STREAM_BLUETOOTH_SCO,   // STREAM_BLUETOOTH_SCO
         AudioSystem.STREAM_MUSIC,           // STREAM_SYSTEM_ENFORCED
         AudioSystem.STREAM_MUSIC,           // STREAM_DTMF
-        AudioSystem.STREAM_MUSIC            // STREAM_TTS
+        AudioSystem.STREAM_MUSIC,           // STREAM_TTS
+        // Engle, add for MTK, start
+        AudioSystem.STREAM_FM,              // STREAM_FM
+        AudioSystem.STREAM_MATV             // STREAM_MATV
+        // Engle, add for MTK, end
     };
     private int[] mStreamVolumeAlias;
 
@@ -266,7 +277,11 @@ public class AudioService extends IAudioService.Stub {
         AppOpsManager.OP_AUDIO_BLUETOOTH_VOLUME,        // STREAM_BLUETOOTH_SCO
         AppOpsManager.OP_AUDIO_MEDIA_VOLUME,            // STREAM_SYSTEM_ENFORCED
         AppOpsManager.OP_AUDIO_MEDIA_VOLUME,            // STREAM_DTMF
-        AppOpsManager.OP_AUDIO_MEDIA_VOLUME,            // STREAM_TTS
+        AppOpsManager.OP_AUDIO_MEDIA_VOLUME,            // STREAM_TTS  
+        // Engle, add for MTK, start
+        AppOpsManager.OP_AUDIO_MEDIA_VOLUME,            // STREAM_FM
+        AppOpsManager.OP_AUDIO_MEDIA_VOLUME             // STREAM_MATV
+        // Engle, add for MTK, end
     };
 
     private final boolean mUseFixedVolume;
@@ -282,7 +297,11 @@ public class AudioService extends IAudioService.Stub {
             "STREAM_BLUETOOTH_SCO",
             "STREAM_SYSTEM_ENFORCED",
             "STREAM_DTMF",
-            "STREAM_TTS"
+            "STREAM_TTS",
+            // Engle, add for MTK, start
+            "STREAM_FM",
+            "STREAM_MATV" 
+            // Engle, add for MTK, end
     };
 
     private boolean mLinkNotificationWithVolume;
