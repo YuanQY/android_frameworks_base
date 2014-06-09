@@ -438,7 +438,6 @@ public final class BluetoothAdapter {
         }
         mService = service;
         mServiceRecordHandler = null;
-        mManagerService = managerService;
         mLeScanClients = new HashMap<LeScanCallback, GattCallbackWrapper>();
         mHandler = new Handler(Looper.getMainLooper());
     }
@@ -484,8 +483,10 @@ public final class BluetoothAdapter {
      * @hide
      */
     public BluetoothAdvScanData getAdvScanData() {
-      try {
-          IBluetoothGatt iGatt = mManagerService.getBluetoothGatt();
+      //try {
+          // Engle, TODO
+          Log.e(TAG, "getAdvScanData: TODO");
+          IBluetoothGatt iGatt = null; //mManagerService.getBluetoothGatt();
           if (iGatt == null) {
               // BLE is not supported
               Log.e(TAG, "failed to start, iGatt null");
@@ -495,10 +496,10 @@ public final class BluetoothAdapter {
               mBluetoothAdvScanData = new BluetoothAdvScanData(iGatt, BluetoothAdvScanData.AD);
           }
           return mBluetoothAdvScanData;
-      } catch (RemoteException e) {
-          Log.e(TAG, "failed to get advScanData, error: " + e);
-          return null;
-      }
+      //} catch (RemoteException e) {
+      //    Log.e(TAG, "failed to get advScanData, error: " + e);
+      //    return null;
+      //}
     }
 
     /**
@@ -530,7 +531,9 @@ public final class BluetoothAdapter {
     public boolean startAdvertising(final AdvertiseCallback callback) {
         if (getState() != STATE_ON) return false;
         try {
-            IBluetoothGatt iGatt = mManagerService.getBluetoothGatt();
+            // Engle, TODO
+            Log.e(TAG, "startAdvertising: TODO");
+            IBluetoothGatt iGatt = null; //mManagerService.getBluetoothGatt();
             if (iGatt == null) {
                 // BLE is not supported.
                 return false;
@@ -578,8 +581,10 @@ public final class BluetoothAdapter {
      * @hide
      */
     public boolean stopAdvertising(AdvertiseCallback callback) {
-        try {
-            IBluetoothGatt iGatt = mManagerService.getBluetoothGatt();
+        //try {
+            // Engle, TODO
+            Log.e(TAG, "stopAdvertising: TODO");
+            IBluetoothGatt iGatt = null;//mManagerService.getBluetoothGatt();
             if (iGatt == null) {
                 // BLE is not supported
                 return false;
@@ -595,10 +600,10 @@ public final class BluetoothAdapter {
             }
             mAdvertisingGattCallback.stopAdvertising();
             return true;
-        } catch (RemoteException e) {
-            Log.e(TAG, "", e);
-            return false;
-        }
+       // } catch (RemoteException e) {
+       //     Log.e(TAG, "", e);
+       //     return false;
+       // }
     }
 
     /**
@@ -978,7 +983,9 @@ public final class BluetoothAdapter {
     public boolean isAdvertising() {
         if (getState() != STATE_ON) return false;
         try {
-            IBluetoothGatt iGatt = mManagerService.getBluetoothGatt();
+            // Engle, TODO
+            Log.e(TAG, "isAdvertising: TODO");
+            IBluetoothGatt iGatt = null;//mManagerService.getBluetoothGatt();
             return iGatt.isAdvertising();
         } catch (RemoteException e) {
             Log.e(TAG, "", e);
@@ -1479,6 +1486,7 @@ public final class BluetoothAdapter {
         }
     }
 
+    /* Engle, to do
     final private IBluetoothManagerCallback mManagerCallback =
         new IBluetoothManagerCallback.Stub() {
             public void onBluetoothServiceUp(IBluetooth bluetoothService) {
@@ -1515,6 +1523,7 @@ public final class BluetoothAdapter {
                 }
             }
     };
+    */
 
     /**
      * Enable the Bluetooth Adapter, but don't auto-connect devices
@@ -1808,7 +1817,9 @@ public final class BluetoothAdapter {
                 BluetoothAdapter adapter = mBluetoothAdapter.get();
                 if (adapter != null) {
                     try {
-                        IBluetoothGatt iGatt = adapter.getBluetoothManager().getBluetoothGatt();
+                        // Engle, TODO
+                        Log.e(TAG, "stopAdvertising: TODO");
+                        IBluetoothGatt iGatt = null; //adapter.getBluetoothManager().getBluetoothGatt();
                         iGatt.stopAdvertising();
                     } catch (RemoteException e) {
                         Log.e(TAG, "Failed to stop advertising" + e);
@@ -2017,8 +2028,9 @@ public final class BluetoothAdapter {
                         BluetoothAdapter adapter = mBluetoothAdapter.get();
                         if (adapter != null) {
                             try {
-                                IBluetoothGatt iGatt =
-                                        adapter.getBluetoothManager().getBluetoothGatt();
+                                // Engle, TODO
+                                Log.e(TAG, "onAdvertiseStateChange : TODO");
+                                IBluetoothGatt iGatt = null; //adapter.getBluetoothManager().getBluetoothGatt();
                                 Log.d(TAG, "unregistering client " + mLeHandle);
                                 iGatt.unregisterClient(mLeHandle);
                                 // Reset advertise app handle.
