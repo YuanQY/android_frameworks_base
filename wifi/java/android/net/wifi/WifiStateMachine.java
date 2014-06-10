@@ -2145,7 +2145,7 @@ public class WifiStateMachine extends StateMachine {
      */
     private void setScanResults(String scanResults) {
         if (scanResults == null) {
-            scanResults = mWifiNative.scanResults(0);
+            scanResults = mWifiNative.scanResults();
             if (scanResults == null) {
                 return;
             }
