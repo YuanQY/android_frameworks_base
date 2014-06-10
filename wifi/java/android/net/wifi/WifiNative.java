@@ -528,6 +528,8 @@ public class WifiNative {
         }
     }
 
+    // Engle add for MTK, hack from MIUI, start
+    /*
     public boolean startWpsPbc(String iface, String bssid) {
         synchronized (mLock) {
             if (TextUtils.isEmpty(bssid)) {
@@ -537,19 +539,44 @@ public class WifiNative {
             }
         }
     }
+    */
+
+    public boolean startWpsPbc(String iface, String bssid) {
+        synchronized (mLock) {
+            if (TextUtils.isEmpty(bssid)) {
+                return doBooleanCommandNative("IFNAME=" + iface + " WPS_PBC interface=" + iface);
+            } else {
+                return doBooleanCommandNative("IFNAME=" + iface + " WPS_PBC interface=" + + iface + " " + bssid);
+            }
+        }
+    }       
+    // Engle add for MTK, hack from MIUI, end
 
     public boolean startWpsPinKeypad(String pin) {
         if (TextUtils.isEmpty(pin)) return false;
         return doBooleanCommand("WPS_PIN any " + pin);
     }
 
+    // Engle add for MTK, hack from MIUI, start
+    /*
     public boolean startWpsPinKeypad(String iface, String pin) {
         if (TextUtils.isEmpty(pin)) return false;
         synchronized (mLock) {
             return doBooleanCommandNative("IFNAME=" + iface + " WPS_PIN any " + pin);
         }
     }
+    */
 
+    public boolean startWpsPinKeypad(String iface, String pin) {
+        synchronized (mLock) {
+            if (TextUtils.isEmpty(pin)) {
+            	  return doBooleanCommandNative("IFNAME=" + iface + " WPS_PIN nterface=" + iface + " any");
+            } else {
+                return doBooleanCommandNative("IFNAME=" + iface + " WPS_PIN nterface=" + iface + " " + pin);
+            }
+        }
+    }
+    // Engle add for MTK, hack from MIUI, end
 
     public String startWpsPinDisplay(String bssid) {
         if (TextUtils.isEmpty(bssid)) {
@@ -559,6 +586,8 @@ public class WifiNative {
         }
     }
 
+    // Engle add for MTK, hack from MIUI, start
+    /*
     public String startWpsPinDisplay(String iface, String bssid) {
         synchronized (mLock) {
             if (TextUtils.isEmpty(bssid)) {
@@ -568,6 +597,15 @@ public class WifiNative {
             }
         }
     }
+    */
+
+    public String startWpsPinDisplay(String iface, String bssid) {
+    	  if (TextUtils.isEmpty(bssid)) return false;
+        synchronized (mLock) {
+            return doStringCommandNative("IFNAME=" + iface + " WPS_PIN nterface=" + iface + " any " + bssid);
+        }
+    }
+    // Engle add for MTK, hack from MIUI, end
 
     /* Configures an access point connection */
     public boolean startWpsRegistrar(String bssid, String pin) {
@@ -616,11 +654,21 @@ public class WifiNative {
         return doBooleanCommand("SET p2p_ssid_postfix " + postfix);
     }
 
+    // Engle, hack from MIUI, start
+    /*
     public boolean setP2pGroupIdle(String iface, int time) {
         synchronized (mLock) {
             return doBooleanCommandNative("IFNAME=" + iface + " SET p2p_group_idle " + time);
         }
     }
+    */
+
+    public boolean setP2pGroupIdle(String iface, int time) {
+        synchronized (mLock) {
+            return doBooleanCommandNative("IFNAME=" + iface + " SET interface=" + iface + " p2p_group_idle " + time);
+        }
+    }
+    // Engle, hack from MIUI, start
 
     public void setPowerSave(boolean enabled) {
         if (enabled) {
@@ -630,6 +678,8 @@ public class WifiNative {
         }
     }
 
+    // Engle, hack from MIUI, start
+    /*
     public boolean setP2pPowerSave(String iface, boolean enabled) {
         synchronized (mLock) {
             if (enabled) {
@@ -639,7 +689,24 @@ public class WifiNative {
             }
         }
     }
+    */
 
+    public boolean setP2pPowerSave(String iface, boolean enabled) {
+        synchronized (mLock) {
+            if (enabled) {
+                return doBooleanCommandNative("IFNAME=" + iface + " P2P_SET interface=" + iface + " ps 1");
+            } else {
+                return doBooleanCommandNative("IFNAME=" + iface + " P2P_SET interface=" + iface + " ps 0");
+            }
+        }
+    }
+
+    public boolean setP2pPowerSaveMtk(String iface, int level)
+    {
+        return doBooleanCommand("p2p_set_power_save " + level);
+    }
+
+    // Engle, hack from MIUI, end
     public boolean setWfdEnable(boolean enable) {
         return doBooleanCommand("SET wifi_display " + (enable ? "1" : "0"));
     }
