@@ -533,7 +533,7 @@ public class WifiNative {
     public boolean startWpsPbc(String iface, String bssid) {
         synchronized (mLock) {
             if (TextUtils.isEmpty(bssid)) {
-                return doBooleanCommandNative("IFNAME=" + iface + " WPS_PBC");
+                return doBooleanCommandNative("IFNAME=" + iface + " WPS_PB -g3C");
             } else {
                 return doBooleanCommandNative("IFNAME=" + iface + " WPS_PBC " + bssid);
             }
@@ -546,7 +546,7 @@ public class WifiNative {
             if (TextUtils.isEmpty(bssid)) {
                 return doBooleanCommandNative("IFNAME=" + iface + " WPS_PBC interface=" + iface);
             } else {
-                return doBooleanCommandNative("IFNAME=" + iface + " WPS_PBC interface=" + + iface + " " + bssid);
+                return doBooleanCommandNative("IFNAME=" + iface + " WPS_PBC interface=" + iface + " " + bssid);
             }
         }
     }       
@@ -600,9 +600,12 @@ public class WifiNative {
     */
 
     public String startWpsPinDisplay(String iface, String bssid) {
-    	  if (TextUtils.isEmpty(bssid)) return false;
         synchronized (mLock) {
-            return doStringCommandNative("IFNAME=" + iface + " WPS_PIN nterface=" + iface + " any " + bssid);
+          	if (TextUtils.isEmpty(bssid)) {
+                return doStringCommandNative("IFNAME=" + iface + " WPS_PIN nterface=" + iface + " any");
+            } else {
+                return doStringCommandNative("IFNAME=" + iface + " WPS_PIN nterface=" + iface + " " + bssid);
+            }
         }
     }
     // Engle add for MTK, hack from MIUI, end
