@@ -279,14 +279,9 @@ public class WifiNative {
      * MASK=<N> see wpa_supplicant/src/common/wpa_ctrl.h for details
      */
     public String scanResults(int sid) {
-        // Engle, for old driver compable, merge from CM 10 (JB-4.1.2)
-        // return doStringCommandWithoutLogging("SCAN_RESULTS");
         return doStringCommandWithoutLogging("BSS RANGE=" + sid + "- MASK=0x21987");
     }
 
-    public String scanResults() {
-        return doStringCommand("BSS RANGE=ALL MASK=0x1986");
-    }
     /**
      * Format of command
      * DRIVER WLS_BATCHING SET SCANFREQ=x MSCAN=r BESTN=y CHANNEL=<z, w, t> RTT=s
