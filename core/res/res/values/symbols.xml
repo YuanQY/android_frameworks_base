@@ -2018,6 +2018,8 @@
   <java-symbol type="string" name="adb_net_active_notification_title" />
   <java-symbol type="string" name="adb_both_active_notification_title" />
   <java-symbol type="string" name="adb_active_generic_notification_message" />
+  <!-- External media format -->
+  <java-symbol type="string" name="extmedia_format_message_cm" />
 
   <!-- Engle, Add for bluez -->
   <java-symbol type="bool" name="config_bluetooth_adapter_quick_switch" />
