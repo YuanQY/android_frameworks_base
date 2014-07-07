@@ -169,6 +169,8 @@ public class Camera {
     private static final int MTK_CAMERA_MSG_EXT_NOTIFY_RAW_DUMP_STOPPED = 18;
     private static final int MTK_CAMERA_MSG_EXT_NOTIFY_SMILE_DETECT = 1;
     private static final int MTK_CAMERA_MSG_EXT_NOTIFY_ZSD_PREVIEW_DONE = 7;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_CAPTURE_DONE = 16;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_SHUTTER = 17;
 // Engle, add for MTK, end
 
     private int mNativeContext; // accessed by native methods
