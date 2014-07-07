@@ -17,7 +17,7 @@
 package android.hardware;
 
 import android.app.ActivityThread;
-import android.annotation.SdkConstant;
+import android.annotation.SdkConstant;ZipImageCallbackThread
 import android.annotation.SdkConstant.SdkConstantType;
 import android.content.Context;
 import android.graphics.ImageFormat;
@@ -161,7 +161,7 @@ public class Camera {
     private static final int MTK_CAMERA_MSG_EXT_DATA_AF = 2;
     private static final int MTK_CAMERA_MSG_EXT_DATA_AUTORAMA = 1;
     private static final int MTK_CAMERA_MSG_EXT_DATA_BURST_SHOT = 3;
-    private static final int MTK_CAMERA_MSG_EXT_NOTIFY = 0x4000000;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY = 0x40000000;
     private static final int MTK_CAMERA_MSG_EXT_NOTIFY_ASD = 2;
     private static final int MTK_CAMERA_MSG_EXT_NOTIFY_BURST_SHUTTER = 4;
     private static final int MTK_CAMERA_MSG_EXT_NOTIFY_CONTINUOUS_END = 6;
@@ -938,6 +938,7 @@ public class Camera {
 
         @Override
         public void handleMessage(Message msg) {
+        	Log.d(TAG, "handle message type: " + msg.what);
             switch(msg.what) {
             case CAMERA_MSG_SHUTTER:
                 if (mShutterCallback != null) {
@@ -1070,7 +1071,7 @@ public class Camera {
 // Engle, add for MTK, end
             /* ### QC ADD-ONS: END */
             default:
-                Log.e(TAG, "Unknown message type " + msg.what);
+                Log.e(TAG, "Why? Unknown message type " + msg.what);
                 return;
             }
         }
