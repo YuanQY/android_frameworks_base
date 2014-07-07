@@ -22,7 +22,7 @@ import android.annotation.SdkConstant.SdkConstantType;
 import android.content.Context;
 import android.graphics.ImageFormat;
 import android.graphics.Point;
-import android.graphics.Rect;
+import android.graphics.Rect;MTK_CAMERA_MSG_EXT_NOTIFY_ASD
 import android.graphics.SurfaceTexture;
 import android.media.IAudioService;
 import android.os.Handler;
@@ -30,7 +30,9 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
-import android.os.ServiceManager;
+import android.os.ServiceManager;			    	case MTK_CAMERA_MSG_EXT_DATA_AUTORAMA:
+			    	
+			    	    break;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -155,6 +157,21 @@ public class Camera {
     private static final int CAMERA_MSG_STATS_DATA       = 0x1000;
     private static final int CAMERA_MSG_META_DATA        = 0x2000;
     /* ### QC ADD-ONS: END */
+
+// Engle, add for MTK, start
+    private static final int MTK_CAMERA_MSG_EXT_DATA = 0x80000000;
+    private static final int MTK_CAMERA_MSG_EXT_DATA_AF = 2;
+    private static final int MTK_CAMERA_MSG_EXT_DATA_AUTORAMA = 1;
+    private static final int MTK_CAMERA_MSG_EXT_DATA_BURST_SHOT = 3;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY = 0x4000000;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_ASD = 2;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_BURST_SHUTTER = 4;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_CONTINUOUS_END = 6;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_MAV = 3;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_RAW_DUMP_STOPPED = 18;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_SMILE_DETECT = 1;
+    private static final int MTK_CAMERA_MSG_EXT_NOTIFY_ZSD_PREVIEW_DONE = 7;
+// Engle, add for MTK, end
 
     private int mNativeContext; // accessed by native methods
     private EventHandler mEventHandler;
@@ -1017,6 +1034,30 @@ public class Camera {
                     mCameraMetaDataCallback.onCameraMetaData((byte[])msg.obj, mCamera);
                 }
                 return;
+// Engle, add for MTK, start
+			case MTK_CAMERA_MSG_EXT_NOTIFY:
+			    Log.w(TAG, "Need TODO MTK-extended notify message type: " + msg.arg1);
+			    switch (msg.arg1) {
+			    	case MTK_CAMERA_MSG_EXT_NOTIFY_ASD:
+			    	    break;
+                    case MTK_CAMERA_MSG_EXT_NOTIFY_BURST_SHUTTER:
+			    	    break;
+                    case MTK_CAMERA_MSG_EXT_NOTIFY_CONTINUOUS_END:
+			    	    break;
+                    case MTK_CAMERA_MSG_EXT_NOTIFY_MAV:
+			    	    break;
+                    case MTK_CAMERA_MSG_EXT_NOTIFY_RAW_DUMP_STOPPED:
+			    	    break;
+                    case MTK_CAMERA_MSG_EXT_NOTIFY_SMILE_DETECT:
+			    	    break;
+                    case MTK_CAMERA_MSG_EXT_NOTIFY_ZSD_PREVIEW_DONE:
+			    	    break;
+			    	default:
+			    	    Log.e(TAG, "Unknown MTK-extended notify message type " + msg.arg1);
+                        break;
+			    }
+			    return;
+// Engle, add for MTK, end
             /* ### QC ADD-ONS: END */
             default:
                 Log.e(TAG, "Unknown message type " + msg.what);
