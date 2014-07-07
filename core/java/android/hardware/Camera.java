@@ -17,7 +17,7 @@
 package android.hardware;
 
 import android.app.ActivityThread;
-import android.annotation.SdkConstant;ZipImageCallbackThread
+import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.content.Context;
 import android.graphics.ImageFormat;
