@@ -1067,24 +1067,10 @@ public class Camera {
 			    return;
 			case MTK_CAMERA_MSG_EXT_DATA:
 			    IntBuffer localIntBuffer = null;
-			    Log.w(TAG, "MTK-extended data message type: " + msg.arg1);
 			    switch (msg.arg1) {
 			       case MTK_CAMERA_MSG_EXT_DATA_AUTORAMA:
-			           byte[] arrayOfByte2 = (byte[])msg.obj;
-			           Log.i(TAG, "MTK_CAMERA_MSG_EXT_DATA_AUTORAMA: byteArray.length = " + arrayOfByte2.length);
-			           localIntBuffer = ByteBuffer.wrap(arrayOfByte2).order(ByteOrder.nativeOrder()).asIntBuffer();
-                       if (localIntBuffer.get(0) != 0) {
-			               break;
-			           }
 			       case MTK_CAMERA_MSG_EXT_DATA_AF:
 			           Log.w(TAG, "Need TODO MTK-extended data message type: " + msg.arg1);
-			           if (null == localIntBuffer)
-			               localIntBuffer = ByteBuffer.wrap((byte[])msg.obj).asIntBuffer();
-		               int i = localIntBuffer.get(1);
-    	               int j = localIntBuffer.get(2);
-		               int k = localIntBuffer.get(3);
-		               int m = ((0xFFFF & i) << 16) + (0xFFFF & j);
-		               Log.i(TAG, "call MTK_CAMERA_MSG_EXT_DATA_AF: " + " dir:" + k + " x:" + i + " y:" + j + " xy:" + m);
 			           break;
 			       default:
                        Log.e(TAG, "Unknown MTK-extended data message type " + msg.arg1);
