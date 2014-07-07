@@ -1051,6 +1051,10 @@ public class Camera {
 			    	    break;
                     case MTK_CAMERA_MSG_EXT_NOTIFY_ZSD_PREVIEW_DONE:
 			    	    break;
+			    	case MTK_CAMERA_MSG_EXT_NOTIFY_CAPTURE_DONE:
+			    	    break;
+			    	case MTK_CAMERA_MSG_EXT_NOTIFY_SHUTTER:
+			    	    break;
 			    	default:
                         Log.e(TAG, "Unknown MTK-extended notify message type " + msg.arg1);
                         break;
