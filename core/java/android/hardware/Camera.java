@@ -22,7 +22,7 @@ import android.annotation.SdkConstant.SdkConstantType;
 import android.content.Context;
 import android.graphics.ImageFormat;
 import android.graphics.Point;
-import android.graphics.Rect;MTK_CAMERA_MSG_EXT_NOTIFY_ASD
+import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.media.IAudioService;
 import android.os.Handler;
@@ -30,9 +30,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
-import android.os.ServiceManager;			    	case MTK_CAMERA_MSG_EXT_DATA_AUTORAMA:
-			    	
-			    	    break;
+import android.os.ServiceManager;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -1053,8 +1051,20 @@ public class Camera {
                     case MTK_CAMERA_MSG_EXT_NOTIFY_ZSD_PREVIEW_DONE:
 			    	    break;
 			    	default:
-			    	    Log.e(TAG, "Unknown MTK-extended notify message type " + msg.arg1);
+                        Log.e(TAG, "Unknown MTK-extended notify message type " + msg.arg1);
                         break;
+			    }
+			    return;
+			case MTK_CAMERA_MSG_EXT_DATA:
+			    Log.w(TAG, "Need TODO MTK-extended data message type: " + msg.arg1);
+			    switch (msg.arg1) {
+			       case MTK_CAMERA_MSG_EXT_DATA_AF:
+			           break;
+			       case MTK_CAMERA_MSG_EXT_DATA_AUTORAMA:
+			           break;
+			       default:
+                       Log.e(TAG, "Unknown MTK-extended data message type " + msg.arg1);
+                       break;
 			    }
 			    return;
 // Engle, add for MTK, end
