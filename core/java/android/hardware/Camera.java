@@ -161,7 +161,6 @@ public class Camera {
     private static final int CAMERA_MSG_META_DATA        = 0x2000;
     /* ### QC ADD-ONS: END */
 
-<<<<<<< HEAD
 // Engle, add for MTK, start
     private static final int MTK_CAMERA_MSG_EXT_DATA = 0x80000000;
     private static final int MTK_CAMERA_MSG_EXT_DATA_AF = 2;
